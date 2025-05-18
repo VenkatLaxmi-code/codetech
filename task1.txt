@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz App with Background</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('website.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .quiz-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        .quiz-header {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <h2 id="question">Question text</h2>
+            <ul>
+                <li><input type="radio" name="answer" id="a" class="answer"><label for="a" id="a_text"></label></li>
+                <li><input type="radio" name="answer" id="b" class="answer"><label for="b" id="b_text"></label></li>
+                <li><input type="radio" name="answer" id="c" class="answer"><label for="c" id="c_text"></label></li>
+                <li><input type="radio" name="answer" id="d" class="answer"><label for="d" id="d_text"></label></li>
+            </ul>
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "What is the capital of France?", a: "Berlin", b: "Madrid", c: "Paris", d: "Lisbon", correct: "c" },
+            { question: "Who is the CEO of Tesla?", a: "Jeff Bezos", b: "Elon Musk", c: "Bill Gates", d: "Tony Stark", correct: "b" },
+            { question: "What is the smallest prime number?", a: "0", b: "1", c: "2", d: "3", correct: "c" },
+            { question: "Which planet is known as the Red Planet?", a: "Earth", b: "Mars", c: "Jupiter", d: "Venus", correct: "b" },
+            { question: "Who wrote 'Romeo and Juliet'?", a: "Charles Dickens", b: "William Shakespeare", c: "Mark Twain", d: "Leo Tolstoy", correct: "b" },
+            { question: "What is the chemical symbol for Gold?", a: "Gd", b: "Au", c: "Ag", d: "Go", correct: "b" },
+            { question: "Which ocean is the largest?", a: "Atlantic", b: "Indian", c: "Arctic", d: "Pacific", correct: "d" },
+            { question: "What is 15 * 3?", a: "45", b: "30", c: "35", d: "40", correct: "a" },
+            { question: "Who painted the Mona Lisa?", a: "Vincent van Gogh", b: "Pablo Picasso", c: "Leonardo da Vinci", d: "Michelangelo", correct: "c" },
+            { question: "Which language is used for web apps?", a: "Python", b: "Java", c: "JavaScript", d: "C++", correct: "c" }
+        ];
+
+        let currentQuiz = 0;
+        let score = 0;
+
+        const quiz = document.getElementById('quiz');
+        const answerEls = document.querySelectorAll('.answer');
+        const questionEl = document.getElementById('question');
+        const a_text = document.getElementById('a_text');
+        const b_text = document.getElementById('b_text');
+        const c_text = document.getElementById('c_text');
+        const d_text = document.getElementById('d_text');
+        const submitBtn = document.getElementById('submit');
+
+        loadQuiz();
+
+        function loadQuiz() {
+            deselectAnswers();
+            const currentQuizData = quizData[currentQuiz];
+            questionEl.textContent = currentQuizData.question;
+            a_text.textContent = currentQuizData.a;
+            b_text.textContent = currentQuizData.b;
+            c_text.textContent = currentQuizData.c;
+            d_text.textContent = currentQuizData.d;
+        }
+
+        function getSelected() {
+            let answer;
+            answerEls.forEach(el => {
+                if (el.checked) {
+                    answer = el.id;
+                }
+            });
+            return answer;
+        }
+
+        function deselectAnswers() {
+            answerEls.forEach(el => el.checked = false);
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const answer = getSelected();
+            if (answer) {
+                if (answer === quizData[currentQuiz].correct) score++;
+                currentQuiz++;
+                if (currentQuiz < quizData.length) {
+                    loadQuiz();
+                } else {
+                    quiz.innerHTML = `
+            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+            <button onclick="location.reload()">Restart Quiz</button>
+          `;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

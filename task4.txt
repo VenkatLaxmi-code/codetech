@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Learning Platform</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #1e88e5;
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #333;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Full Screen Home Section with Linear Gradient */
+    .home {
+      background: linear-gradient(135deg, #00bcd4, #1e88e5);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .home h1 {
+      font-size: 3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: white;
+      color: #00bcd4;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #e0f7fa;
+    }
+
+    /* Courses Section with Radial Gradient */
+    .courses {
+      background: radial-gradient(circle, rgba(0, 188, 212, 0.8), rgba(26, 35, 126, 0.8));
+      color: white;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;  /* Allow items to wrap in smaller screens */
+      gap: 2rem; /* Spacing between the course cards */
+      text-align: center;
+    }
+
+    .courses h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      width: 100%; /* Ensure the heading spans across the full width */
+      text-align: center;
+    }
+
+    /* Course Cards */
+    .course-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      width: 250px; /* Fixed width for each card */
+      height: 350px; /* Fixed height for each card */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Image Styles - 50% of Height and Width */
+    .course-card img {
+      width: 50%; /* 50% of the width of the container */
+      height: 50%; /* 50% of the height of the container */
+      object-fit: cover; /* Ensures aspect ratio is maintained and cropped if needed */
+      margin: 0 auto; /* Center the image */
+      display: block; /* Ensure the image is treated as a block-level element */
+    }
+
+    .course-info {
+      padding: 0.5rem;
+    }
+
+    .course-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-info p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .progress-container {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background-color: #1e88e5;
+      border-radius: 5px;
+    }
+
+    /* Full Screen About Section with Linear Gradient */
+    .about {
+      background: linear-gradient(135deg, #f4f7fc, #00bcd4);
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+    }
+
+    /* Full Screen Contact Section with Radial Gradient */
+    .contact {
+      background: radial-gradient(circle, rgba(248, 248, 248, 0.9), rgba(233, 233, 233, 0.9));
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Learnify - E-Learning Platform</h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Full Screen Home Section -->
+  <section class="home" id="home">
+    <h1>Welcome to Learnify</h1>
+    <p>Your platform to learn and grow at your own pace.</p>
+    <a href="#courses" class="btn">Start Learning</a>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses" id="courses">
+    <h2>Our Courses</h2>
+
+    <!-- Course 1 -->
+    <div class="course-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js for Beginners">
+      <div class="course-info">
+        <h3>React.js for Beginners</h3>
+        <p>Master React and start building interactive user interfaces.</p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <span style="width: 30%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course 2 -->
+    <div class="course-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Programming">
+      <div class="course-info">
+        <h3>Python Programming</h3>
+        <p>Learn Python, one of the most popular programming languages.</p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <span style="width: 80%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course 3 -->
+    <div class="course-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Data Science with Python">
+      <div class="course-info">
+        <h3>Data Science with Python</h3>
+        <p>Explore data analysis and visualization techniques with Python.</p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <span style="width: 60%"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Screen About Section -->
+  <section class="about" id="about">
+    <h2>About Learnify</h2>
+    <p>Learnify is a platform dedicated to providing high-quality online courses that help you expand your knowledge and skills at your own pace. Learn anytime, anywhere!</p>
+  </section>
+
+  <!-- Full Screen Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@learnify.com</p>
+    <p>Phone: +123 456 7890</p>
+  </section>
+
+  <!-- Video Embedding Section -->
+  <section class="video-embed">
+    <iframe src="https://www.youtube.com/watch?v=Z7wkIzqAj4U" title="Course Introduction" allowfullscreen></iframe>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Learnify. All rights reserved.</p>
+  </footer>
+
+  <!-- Smooth Scroll JavaScript -->
+  <script>
+    // For smooth scrolling effect when navigating through sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
